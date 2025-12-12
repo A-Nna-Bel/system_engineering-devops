@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
-# Trap SIGTERM signal and print message instead of terminating
-# Use SIG_IGN to ignore the signal after printing
-trap 'echo "I am invincible!!!"' SIGTERM
+# 7-highlander
+# Print "To infinity and beyond" forever, sleep 2 between prints.
+# When receiving SIGTERM, print "I am invincible!!!" and continue.
 
-# Also trap SIGINT (Ctrl+C) to handle it gracefully
-trap 'echo "I am invincible!!!"' SIGINT
+# Trap SIGTERM and run the handler (does not exit)
+trap 'printf "I am invincible!!!\n"' SIGTERM
 
-# Infinite loop with the required message
-while true
-do
-    echo "To infinity and beyond"
-    sleep 2
+while true; do
+  printf "To infinity and beyond\n"
+  sleep 2
 done
