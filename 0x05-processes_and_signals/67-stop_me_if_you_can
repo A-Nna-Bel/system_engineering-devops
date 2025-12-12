@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
-# A Bash script that stops 7-highlander by sending SIGTERM, printing OK
+# 67-stop_me_if_you_can
+# Send SIGTERM to a running 7-highlander script (first match).
 
-# Find the PID of the 7-highlander process
-pid=$(pgrep -f "7-highlander")
+# Find the PID of the running 7-highlander script (match by command line)
+pid=$(pgrep -f "7-highlander" | head -n 1)
 
-# Send SIGTERM if the process exists
-if [ -n "$pid" ]; then
-    kill -15 "$pid" 2>/dev/null
-fi
+# If no PID found, exit quietly
+[ -z "$pid" ] && exit 0
 
-# Print OK for the auto-checker
-echo OK
+# Send SIGTERM
+kill -TERM "$pid" 2>/dev/null || true
