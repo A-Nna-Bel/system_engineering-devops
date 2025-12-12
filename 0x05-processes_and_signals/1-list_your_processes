@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# A Bash script that displays all currently running processes by user only
+# A Bash script that displays all running process owners (usernames only), no headers
 
-ps -e -o user= 
+ps -eo user --no-headers
