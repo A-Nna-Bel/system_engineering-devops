@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# A Bash script that prints a phrase indefinitely and responds to SIGTERM
-
-# Define a handler function for SIGTERM
+# Trap SIGTERM signal and print message instead of terminating
+# Use SIG_IGN to ignore the signal after printing
 trap 'echo "I am invincible!!!"' SIGTERM
 
-# Infinite loop
+# Also trap SIGINT (Ctrl+C) to handle it gracefully
+trap 'echo "I am invincible!!!"' SIGINT
+
+# Infinite loop with the required message
 while true
 do
     echo "To infinity and beyond"
